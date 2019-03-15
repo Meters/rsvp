@@ -66,8 +66,9 @@ class AttendeeController extends Controller
 		$success = $attendee->save();
 		
 		$objRSVP = new \stdClass();
-        $objRSVP->sender = 'SenderUserName';
- 
+        $objRSVP->sender = 'Host';
+		$objRSVP->receiver = $request->get('name_first');
+		
         Mail::to($request->get('email'))->send(new RSVPEmail($objRSVP));
 		
 		return redirect('/')->with('success', 'Thank you for your reply!');
