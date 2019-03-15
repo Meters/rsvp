@@ -20,3 +20,6 @@ Route::resource('/admin', 'AdminController');
 
 Route::resource('attendees', 'AttendeeController');
 Route::post('attendees/checkin', 'AttendeeController@checkin')->name('attendees.checkin');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

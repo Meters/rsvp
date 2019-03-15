@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Attendee;
 
 class AdminController extends Controller
@@ -10,9 +11,13 @@ class AdminController extends Controller
     //
 	public function index(){
 		
+		if (!Auth::check()) {
+			return redirect('/login');
+		}
+		
 		$attendees = Attendee::all();
-
         return view('admin', compact('attendees'));
+		
 	}
 	
 	public function export()
