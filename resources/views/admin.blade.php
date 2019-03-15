@@ -1,5 +1,6 @@
 @extends('layout.mainlayout')
 @section('content')
+	<a href="admin/export"><Button class="btn btn-primary">CSV Export</Button></a>
 	<table class="table table-striped">
     <thead>
         <tr>
