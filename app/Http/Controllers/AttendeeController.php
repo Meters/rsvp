@@ -36,7 +36,7 @@ class AttendeeController extends Controller
      */
     public function store(Request $request)
     {
-		
+		//validate data
 		$request->validate([
 			'name_first'=>'required',
 			'name_last'=> 'required',
@@ -45,6 +45,12 @@ class AttendeeController extends Controller
 			'attending' => 'required|integer|between:0,1'
 		]);
 		
+		
+		//check if email is already registered
+		$get = Attendee::select()->where('email', $request->get("email"))->get();
+		if($get->count() > 0){
+			return redirect('/')->with('error', 'You have already registered!');
+		}
 		
 		
 		$attendee = new Attendee([
