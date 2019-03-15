@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('main');
 });
 
+Route::get('admin/export', 'AdminController@export');
+Route::resource('/admin', 'AdminController');
+
 Route::resource('attendees', 'AttendeeController');
+Route::post('attendees/checkin', 'AttendeeController@checkin')->name('attendees.checkin');
