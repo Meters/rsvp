@@ -30,8 +30,8 @@ class RSVPEmail extends Mailable
     public function build()
     {
         return $this->from('sender@example.com')
-                    ->view('mails.RSVPEmail')
-                    ->text('mails.RSVPEmail_plain')
+                    ->view('mails.rsvpconfirmation')
+                    ->text('mails.rsvpconfirmation_plain')
                     ->with([
 						'receiver' => 'Guest',
 						'sender' => 'Host',
