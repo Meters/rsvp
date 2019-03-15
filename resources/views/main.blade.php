@@ -1,10 +1,11 @@
 @extends('layout.mainlayout')
 @section('content')
 	<div class="container">
-		<form method="post" action="/attendees">
+		<form method="post" action="{{ route('attendees.store') }}">
+			@csrf
 			<div class="form-group">
 				<label for="name_title">Title</label>
-				<select class="form-control" id="name_title" required>
+				<select class="form-control" name="name_title" id="name_title" required>
 					<option value="Mr">Mr</option>
 					<option value="Ms">Ms</option>
 					<option value="Mrs">Mrs</option>
@@ -14,21 +15,39 @@
 			</div>
 			<div class="form-group">
 				<label for="name_first">First Name</label>
-				<input type="text" class="form-control" id="name_first" placeholder="First Name" required>
+				<input type="text" class="form-control" name="name_first" id="name_first" placeholder="First Name" required>
 			</div>
 			<div class="form-group">
 				<label for="name_last">Last Name</label>
-				<input type="text" class="form-control" id="name_last" placeholder="Last Name" required>
+				<input type="text" class="form-control" name="name_last" id="name_last" placeholder="Last Name" required>
 			</div>
 			<div class="form-group">
 				<label for="email">Email address</label>
-				<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+				<input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
 				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			</div>
+			
+			
+			<div class="form-group">
+				<p>Will you be attending?</p>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="attending" id="attendingYes" value="1" checked>
+					<label class="form-check-label" for="attendingYes">
+						I'll be attending!
+					</label>
+				</div>
+				
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="attending"  id="attendingNo" value="0">
+					<label class="form-check-label" for="attendingNo">
+						Perhaps next time...
+					</label>
+				</div>
 			</div>
 			
 			<div class="form-group">
 				<label for="country">Country</label>
-				<select class="form-control" id="country">
+				<select class="form-control" id="country" name="country">
 					<option value="none">==Select Country==</option>
 					<option value="Afghanistan">Afghanistan</option>
 					<option value="Albania">Albania</option>
