@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Attendee;
-use App\MailController;
+use App\Mail\RSVPEmail;
+use Illuminate\Support\Facades\Mail;
 
 class AttendeeController extends Controller
 {
