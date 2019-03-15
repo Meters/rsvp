@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Attendee;
+use App\MailController;
 
 class AttendeeController extends Controller
 {
@@ -62,6 +63,12 @@ class AttendeeController extends Controller
 			'attending'=> $request->get('attending')
 		]);
 		$success = $attendee->save();
+		
+		$objRSVP = new \stdClass();
+        $objRSVP->sender = 'SenderUserName';
+ 
+        Mail::to($request->get('email'))->send(new RSVPEmail($objRSVP));
+		
 		return redirect('/')->with('success', 'Thank you for your reply!');
 		
     }
