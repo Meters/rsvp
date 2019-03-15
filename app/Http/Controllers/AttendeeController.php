@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Attendee;
 
 class AttendeeController extends Controller
 {
@@ -14,6 +15,7 @@ class AttendeeController extends Controller
     public function index()
     {
         //
+		return redirect('/');
     }
 
     /**
@@ -34,7 +36,28 @@ class AttendeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		
+		$request->validate([
+			'name_first'=>'required',
+			'name_last'=> 'required',
+			'name_title' => 'required',
+			'email' => 'required',
+			'attending' => 'required|integer|between:0,1'
+		]);
+		
+		
+		
+		$attendee = new Attendee([
+			'name_first' => $request->get('name_first'),
+			'name_last'=> $request->get('name_last'),
+			'name_title'=> $request->get('name_title'),
+			'email'=> $request->get('email'),
+			'country'=> $request->get('country'),
+			'attending'=> $request->get('attending')
+		]);
+		$success = $attendee->save();
+		return redirect('/')->with('success', 'Thank you for your reply!');
+		
     }
 
     /**
