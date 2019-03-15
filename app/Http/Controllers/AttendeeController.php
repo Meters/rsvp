@@ -119,4 +119,16 @@ class AttendeeController extends Controller
     {
         //
     }
+	
+	public function checkin(Request $request){
+		$id = $request->get('id');
+		$bool = $request->get('bool');
+		
+		$find = Attendee::find($id);
+		$find->checked_in_at = \Carbon\Carbon::now();
+		$find->save();
+		
+		return back();
+		
+	}
 }
