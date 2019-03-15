@@ -11,6 +11,8 @@ class RSVPEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+	public $rsvp;
+
     /**
      * Create a new message instance.
      *
