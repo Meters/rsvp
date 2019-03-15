@@ -42,7 +42,7 @@ class AdminController extends Controller
 					$attendee->email,
 					$attendee->country,
 					$attendee->attending,
-					$attendee->checked_in_at,
+					$attendee->checked_in_at ? $attendee->checked_in_at : "null",
 					$attendee->created_at,
 					$attendee->updated_at,
 				));
