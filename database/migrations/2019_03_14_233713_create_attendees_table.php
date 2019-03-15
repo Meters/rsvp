@@ -21,7 +21,7 @@ class CreateAttendeesTable extends Migration
             $table->string('email', 191)->unique();
             $table->string('country');
 			$table->boolean('attending');
-			$table->dateTime('checked_in_at');
+			$table->dateTime('checked_in_at')->nullable();
             $table->timestamps();
         });
     }
