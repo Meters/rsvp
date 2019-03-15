@@ -1,6 +1,28 @@
 @extends('layout.mainlayout')
 @section('content')
 	<div class="container">
+		@if ($errors->any())
+		  <div class="alert alert-danger" role="alert">
+			<ul>
+				@foreach ($errors->all() as $error)
+				  <li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		  </div><br />
+		@endif
+		
+		@if (session()->get('error'))
+		  <div class="alert alert-danger" role="alert">
+			{{ session()->get('error') }}
+		  </div><br />
+		@endif
+		
+		@if (session()->get('success'))
+		  <div class="alert alert-success" role="alert">
+			{{ session()->get('success') }}
+		  </div><br />
+		@endif
+	
 		<form method="post" action="{{ route('attendees.store') }}">
 			@csrf
 			<div class="form-group">
